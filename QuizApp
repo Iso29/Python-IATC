@@ -1,0 +1,30 @@
+correctAnswers = []
+correctCount = 0
+answers = ["Eight", "Woody", "Green", "A nail", "The zoo", "Pinocchio", "Tinkerbell", "Ice", "White", "The White House"]
+yourAnswers = []
+
+question1 = "How many legs does a spider have?"
+question2 = "What is the name of the toy cowboy in Toy Story?"
+question3 = "What is the color of an emerald?"
+question4 = "What is something you hit with a hammer?"
+question5 = "What's the name of a place you go to see lots of animals?"
+question6 = "Whose nose grew longer every time he lied?"
+question7 = "What is the name of the fairy in Peter Pan?"
+question8 = "If you freeze water, what do you get?"
+question9 = "What colors are the stars on the American flag?"
+question10 = "Where does the President of the United States live while in office?"
+questions = [question1,question2,question3,question4,question5,question6,question7,question8,question9,question10]
+
+for i,q in enumerate(questions) :
+  print(q)
+  reply =input("your answer is :")
+  yourAnswers.append(reply)
+  correctAnswers.append(True if answers[i].lower()==reply.lower() else False)
+  correctCount +=1 if answers[i].lower()==reply.lower() else 0
+
+print("You have", correctCount, "out of 10 correct answers.", end = " ")
+print("Congratulations!" if correctCount > 7 else "Unfortunately you failed the quiz", end = "\n\n")
+
+for i in range(len(correctAnswers)):
+  if correctAnswers[i] == False:
+    print(f"Your answer for {i+1} question was {yourAnswers[i]}, but the right answer is ", answers[i])
