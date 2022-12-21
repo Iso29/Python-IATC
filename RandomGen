@@ -1,0 +1,20 @@
+from time import time_ns
+#random number generator
+def randomgn(a,b):
+  k=time_ns()%b
+  if(k<a):
+    k=k+a
+  return k
+#random char generator
+def randomCharGen():
+  c=randomgn(32,256)
+  return chr(c)
+print(randomCharGen())
+
+#random password generator
+def randomStringGen():
+  str=randomCharGen()
+  for x in range(randomgn(1,10)):
+    str=str+randomCharGen()
+  return str
+print(randomStringGen())
