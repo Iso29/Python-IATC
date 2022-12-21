@@ -1,0 +1,87 @@
+import os
+from time import time_ns
+def randomgn(a,b):
+  k=time_ns()%b
+  if(k<a):
+    k=k+a
+  return k
+
+sketch=[
+    ["1","2","3"],
+    ["4","5","6"],
+    ["7","8","9"]
+]
+
+firstPlayer=True
+
+def draw(sketch):
+  for i,row in enumerate(sketch) :
+    for j,cell in enumerate(row) :
+      if j!=2:
+        print(cell,end="|")
+      if j==2:
+        print(cell)
+    if(i!=2):
+      print("-----")
+
+def setlment():
+  count=0
+  for i,row in enumerate(sketch):
+    for j,col in enumerate(row):
+      if(col!=" "):
+        count+=1
+  if count==6:
+    print(draw)
+
+
+def checkForWin(sketch) :
+  for column in sketch:
+    if column[0]!=" " and column[0]==column[1] and column[1]==column[2]:
+      return True
+  for i,row in enumerate(sketch):
+    for j,col in enumerate(sketch):
+      if i!=0:
+        continue
+      elif sketch[i][j]!=" " and sketch[i][j]==sketch[i+1][j]==sketch[i+2][j]:
+        return True
+  if sketch[0][0]!=" " and sketch[0][0]==sketch[1][1]==sketch[2][2] :
+    return True
+  if sketch[0][2]!=" " and sketch[0][2]==sketch[1][1]==sketch[2][0] :
+    return True
+  return False
+
+while True:
+  draw(sketch)
+  if firstPlayer:
+    num = int(input("Enter num between 1 and 9"))
+    if not (num>=1 and num<=9) :
+      continue
+    row = (num - 1) // 3
+    col = num % 3 - 1
+    if sketch[row][col]!="X" and sketch[row][col]!="O":
+      sketch[row][col]="X"
+      firstPlayer=False
+    else :
+       print("you can't place here ")
+  else:
+    num=randomgn(1,10)
+    row = (num - 1) // 3
+    col = num % 3 - 1
+    if sketch[row][col]!="X" and sketch[row][col]!="O":
+      sketch[row][col]="O"
+      firstPlayer=True
+  print("\n\n")
+  # Clearing the Screen
+  os.system('cls')
+          
+  if checkForWin(sketch):
+    # Clearing the Screen
+    os.system('cls')
+    draw(sketch)
+    if firstPlayer :
+      print("Winner is computer")
+    else:
+      print("Winner is you")
+    break
+
+  setlment()
