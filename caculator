@@ -1,0 +1,51 @@
+from typing import MutableSequence
+def sum(*args):
+  result =0
+  for num in args:
+    result=result+num
+  return result
+
+def sub(*args):
+  result=2*args[0]
+  for num in args:
+    result=result-num
+  return result
+
+def division(*args):
+  result=args[0]*args[0]
+  for num in args:
+    result = result/num
+  return result
+
+def multiply(*args):
+  result=1
+  for num in args:
+    result=result*num
+  return result
+
+while True:
+  n=int(input("how many numbers you want to use ?"))
+  numbers = list()
+  for i in range(n):
+    number=int(input("enter numbers"))
+    numbers.append(number)
+
+  op=input("which operation do you want to do : +,-,/,*")
+  if op=="+":
+    res=sum(numbers)
+    print(res)
+  elif op=="-":
+    res=sub
+    print(res)
+  elif op=="/":
+    res=division(numbers)
+    print(res)
+  elif op=="*":
+    res=multiply(numbers)
+    print(res)
+  else :
+    print("error : operation is not exists")
+  
+  
+  if(input("if you want to leave write 'break'")=='break'):
+    break
